@@ -22,16 +22,16 @@ int main()
 
 	string **Arr = new string*[n]; //Формируем динамический массив динамических строк
 
-	for (int i = 0; i < n; i++)
-		Arr[i] = new string[1]; //Инициализируем динамические элементы
-
 	cin.ignore(); //Удаляем из потока cin лишний пробел от ввода кол-ва строк
-	for (int i = 0; i < n; i++) //Пользователь вводит свои строки
+
+	for (int i = 0; i < n; i++)
 	{
-		do 
+		Arr[i] = new string[1]; //Инициализируем элемент динамического массива
+
+		do
 		{
 			cout << "Введите строку:" << " ";
-			getline(cin, Arr[i][0]);
+			getline(cin, Arr[i][0]); //Пользователь вводит строку
 		} 
 		while (Arr[i][0].empty());
 	}
@@ -41,8 +41,8 @@ int main()
 		string element = Arr[i][0]; //Получаем строку
 		int start_index = 0;
 		int last_index = element.size() - 1;
-		bool flag = false;
 		int counter = 0;
+		bool flag = false;
 
 		//Находим первый элемент строки, который не пробел
 		while (counter < element.size() && !flag)
@@ -96,7 +96,7 @@ int main()
 	}
 	
 
-	//Строки 97 - 100: чистим память
+	//Строки 99 - 103: чистим память
 	for (int i = 0; i < n; i++)
 		delete[] Arr[i];
 
