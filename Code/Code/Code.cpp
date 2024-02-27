@@ -28,15 +28,19 @@ int main()
 	cin.ignore(); //Удаляем из потока cin лишний пробел от ввода кол-ва строк
 	for (int i = 0; i < n; i++) //Пользователь вводит свои строки
 	{
-		cout << "Введите строку:" << endl;
-		getline(cin, Arr[i][0]);
+		do 
+		{
+			cout << "Введите строку:" << " ";
+			getline(cin, Arr[i][0]);
+		} 
+		while (Arr[i][0].empty());
 	}
 
 	for (int i = 0; i < n; i++)
 	{
 		string element = Arr[i][0]; //Получаем строку
-		int start_index;
-		int last_index;
+		int start_index = 0;
+		int last_index = element.size() - 1;
 		bool flag = false;
 		int counter = 0;
 
@@ -49,12 +53,12 @@ int main()
 		}
 
 		counter = element.size() - 1;
-		bool should_stop = false;
+		flag = false;
 
 		//Находим последний элемент строки, не равный пробелу
-		while (counter > -1 && !should_stop)
+		while (counter > -1 && !flag)
 		{
-			should_stop = element[counter] != ' ';
+			flag = element[counter] != ' ';
 			last_index = counter;
 			counter--;
 		}
@@ -74,11 +78,13 @@ int main()
 		}
 	}
 
+	cout << endl;
+
 	//Если хотя бы одна строка осталась
 	if (n != 0)
 	{
 		//то выводим отредактированный массив
-		cout << endl << "Ваши строки:" << endl;
+		cout << "Ваши строки:" << endl;
 
 		for (int i = 0; i < n; i++)
 			cout << Arr[i][0] << endl;
